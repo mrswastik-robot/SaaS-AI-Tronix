@@ -2,6 +2,9 @@ import { XIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
+import { Poppins } from "next/font/google";
+const poppins = Poppins({ weight: "500", subsets: ["latin"] });
+
 interface HeadingProps {
   title: string;
   description: string;
@@ -25,7 +28,7 @@ export const Heading = ({
         </div>
         <div>
           <h2 className="text-3xl font-bold">{title}</h2>
-          <p className="text-sm text-muted-foreground">{description}</p>
+          <p className={cn("text-sm text-muted-foreground",poppins.className)}>{description}</p>
         </div>
       </div>
     </>

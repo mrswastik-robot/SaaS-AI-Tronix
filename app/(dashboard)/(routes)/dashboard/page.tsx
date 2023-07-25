@@ -8,6 +8,9 @@ import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { tools } from "@/constants";
 
+import { Poppins } from "next/font/google";
+const poppins = Poppins({ weight: "600", subsets: ["latin"] });
+
 export default function Dashboard() {
 
 
@@ -30,7 +33,7 @@ export default function Dashboard() {
               <div className={cn("p-2 w-fit rounded-md ", tool.bgColor)}>
                 <tool.icon className={cn("w-8 h-8", tool.color)} />
               </div>
-              <div className="font-semibold">
+              <div className={cn("font-semibold text-lg",poppins.className)}>
                 {tool.label}
               </div>
             </div>
