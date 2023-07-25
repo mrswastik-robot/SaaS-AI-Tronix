@@ -27,7 +27,7 @@ import { BotAvatar } from "@/components/bot-avatar";
 
 
 
-import { MessageSquare } from "lucide-react";
+import { ImageIcon } from "lucide-react";
 
 const ConversationPage = () => {
 
@@ -73,11 +73,11 @@ const ConversationPage = () => {
   return (
     <div>
       <Heading
-        title="Conversation"
-        description="Most advanced conversation model in the market."
-        icon={MessageSquare}
-        iconColor="text-violet-500"
-        bgColor="bg-violet-500/10"
+        title="Text to Image Generation"
+        description="DALL-E powered Image Generation model."
+        icon={ImageIcon}
+        iconColor="text-pink-700"
+        bgColor="bg-pink-700/10"
       />
 
       <div className=" px-4 lg:px-8">
@@ -94,7 +94,7 @@ const ConversationPage = () => {
                                 <Input
                                 className=" border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                                 disabled={isLoading}
-                                placeholder="Which side are you on? (Barbie or Oppenheimer)"
+                                placeholder="Gandhi Jii riding on a horse"
                                 autoComplete="off"
                                 {...field}    // this {...field} is the substitute for manually writing the onChange, onBlur, value, name, ref, etc.    //watch on 1:39:00
                                 />

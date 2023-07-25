@@ -4,7 +4,7 @@
 import axios from "axios";
 
 import * as z from "zod";
-import { formSchema} from "./constants"
+import { formSchema} from './constants';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
@@ -12,6 +12,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { ChatCompletionRequestMessage } from "openai";
+
+import ReactMarkdown from "react-markdown";           // we are not getting the code snippet in the markdown format, so we need to import this
 
 
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
@@ -26,10 +28,9 @@ import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
 
 
+import {Code } from "lucide-react";
 
-import { MessageSquare } from "lucide-react";
-
-const ConversationPage = () => {
+const CodePage = () => {
 
     const router = useRouter();
 
@@ -54,7 +55,7 @@ const ConversationPage = () => {
 
             const newMessages = [...messages , userMessage];
 
-            const response = await axios.post("/api/conversation", {
+            const response = await axios.post("/api/code", {
                 messages: newMessages,
             });
 
@@ -73,11 +74,11 @@ const ConversationPage = () => {
   return (
     <div>
       <Heading
-        title="Conversation"
-        description="Most advanced conversation model in the market."
-        icon={MessageSquare}
-        iconColor="text-violet-500"
-        bgColor="bg-violet-500/10"
+        title="Code Generation"
+        description="Generate Code with your text prompts."
+        icon={Code}
+        iconColor="text-green-700"
+        bgColor="bg-green-700/10"
       />
 
       <div className=" px-4 lg:px-8">
@@ -94,7 +95,7 @@ const ConversationPage = () => {
                                 <Input
                                 className=" border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                                 disabled={isLoading}
-                                placeholder="Which side are you on? (Barbie or Oppenheimer)"
+                                placeholder="Write rat in the maze algorithm in python."
                                 autoComplete="off"
                                 {...field}    // this {...field} is the substitute for manually writing the onChange, onBlur, value, name, ref, etc.    //watch on 1:39:00
                                 />
@@ -130,10 +131,16 @@ const ConversationPage = () => {
                     className={cn("p-8 w-full flex gap-x-8 rounded-lg", message.role === 'user' ? "bg-white border border-black/10" : "bg-muted")}
                     >
                         {message.role === 'user' ? <UserAvatar/> : <BotAvatar/>}
-                        {message.role === 'user' ? 
-                        <div className=" text-blue-500">
-                            {message.content}
-                        </div> : <div>{message.content}</div>}
+
+                        <ReactMarkdown
+                        components={{
+                            pre:({node , ...props}) => (<div className=" overflow-auto w-full my-2 bg-black text-green-600 p-2 rounded-lg"><pre {...props}/></div>),
+                            code: ({node , ...props}) => (<code className="bg-black/10 rounded-lg p-1 " {...props}/>)
+                        }}
+                        className="text-sm overflow-hidden leading-7">
+                            {message.content || ""}
+
+                        </ReactMarkdown>
                     </div>
                 ))}
             </div>
@@ -146,4 +153,4 @@ const ConversationPage = () => {
   );
 };
 
-export default ConversationPage;
+export default CodePage;
