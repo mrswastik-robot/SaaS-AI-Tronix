@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Image from "next/image";
 
 // import { ChatCompletionRequestMessage } from "openai";
 
@@ -19,6 +20,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {cn} from "@/lib/utils";
+import { Card, CardFooter } from "@/components/ui/card";
+
+import { Download, ImageIcon } from "lucide-react";
 
 
 import {Heading }from "@/components/heading";
@@ -28,8 +32,6 @@ import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
 
 
-
-import { ImageIcon } from "lucide-react";
 
 const ImagePage = () => {
 
@@ -203,8 +205,34 @@ const ImagePage = () => {
                 <Empty label="No Image Generated."/>
                 )}
 
-                <div>
-                    Images will be genrated here
+                <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
+                    {images.map((src) => (
+                        <Card 
+                        key={src}
+                        className=" rounded-lg overflow-hidden"
+                        >
+                            <div className=" relative aspect-square">
+                                <Image 
+                                alt="Image"
+                                fill
+                                src={src}
+                                />
+                            </div>
+
+                            <CardFooter className=" p-2">
+                                <Button
+                                onClick={() => window.open(src, "_blank")}
+                                variant="secondary"
+                                className=" w-full "
+                                >
+                                    <Download className=" h-4 w-4 mr-2"/>
+                                    Download
+                                </Button>
+                            </CardFooter>
+
+                        </Card>
+
+                    )) }
                 </div>
 
             
