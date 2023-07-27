@@ -72,3 +72,31 @@ export const checkUserApiLimit = async() => {
 
 
 };
+
+//now we are going to create a util to get the current api limit count so that we can show the loader in the sidebar with the current api used count
+
+export const getApiLimitCount = async() => {
+
+    const {userId} = auth();
+
+    if(!userId){
+        return 0;
+    }
+
+    const userApiLimit = await prismadb.userApiLimit.findUnique({
+        where:{
+            userId: userId,
+        },  
+    });
+
+    if(!userApiLimit){              //if there is no userApiLimit that means user has not run any api yet so show 0
+        return 0;
+    }
+
+    return userApiLimit.count;
+
+}
+
+// we will be fetching this getApiLimitCount in the layout.tsx file which is a server component because we can only access prisma from a server component
+//then from layout.tsx we will send it as a prop to <Sidebar /> component which is a client component and then we will show the loader in the sidebar with the current api used count
+//3:28

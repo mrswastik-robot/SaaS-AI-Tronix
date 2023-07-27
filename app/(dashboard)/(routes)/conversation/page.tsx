@@ -66,7 +66,7 @@ const ConversationPage = () => {
             //todo : open pro model     //1:54
             console.log(error);
         } finally {
-            router.refresh();     //all of our server components are gonna update
+            router.refresh();     //all of our server components are gonna update  // 3:28 *important*
         }
     };
 
