@@ -36,6 +36,7 @@ export async function POST(
 
     if (!freeTrial) {
       return new NextResponse("Free trial has expired. Please upgrade to pro.", { status: 403 });
+      //isse apan 403 return karenge aur ise page.tsx me handle kr rhe jisse hi 5 used ho jaane par modal opne ho jaaye subscription wala
     }
 
     //agar freeTrial true hain matlab bacha hain toh neeche wala response return ho jayega

@@ -25,13 +25,15 @@ import { Loader } from "@/components/loader";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
 
-
+import { useProModal } from "@/hooks/use-pro-model";
 
 import { MessageSquare } from "lucide-react";
 
 const ConversationPage = () => {
 
     const router = useRouter();
+
+    const openProModal = useProModal();
 
     const [messages , setMessages] = useState<ChatCompletionRequestMessage[]>([]); 
 
@@ -64,7 +66,10 @@ const ConversationPage = () => {
             
         } catch (error:any) {
             //todo : open pro model     //1:54
-            console.log(error);
+            if(error?.response?.status === 403) {
+                openProModal.onOpen();
+            }
+            // console.log(error);
         } finally {
             router.refresh();     //all of our server components are gonna update  // 3:28 *important*
         }

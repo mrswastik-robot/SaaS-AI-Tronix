@@ -10,11 +10,17 @@ import { Progress } from "@/components/ui/progress";
 
 import { Zap } from "lucide-react";
 
+import { useProModal } from "@/hooks/use-pro-model";
+
 interface FreeCounterProps {
   apiLimitCount: number;
 }
 
 const FreeCounter = ({ apiLimitCount = 0 }: FreeCounterProps) => {
+
+    //we need to open the modal when a user clicks on the upgrade button
+    const  openProModal  = useProModal();
+
   //to avoid hydration error
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -34,7 +40,7 @@ const FreeCounter = ({ apiLimitCount = 0 }: FreeCounterProps) => {
               value={(apiLimitCount / MAX_FREE_COUNTS) * 100}
             />
           </div>
-          <Button variant="premium" className="w-full">
+          <Button variant="premium" className="w-full" onClick={openProModal.onOpen}>
             Upgrade
             <Zap className="w-4 h-4 ml-2 fill-white" />
           </Button>

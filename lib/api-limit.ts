@@ -34,7 +34,7 @@ export const increaseApiLimit = async () => {
         })
     }
 
-    else {
+    else {                                   //agar userApiLimit tha matlab userId exist krti thi matlab user tha database to update kr diya pr else me apan handle kr rhe ki jab user hain hi nhi sql databse me to create kr rhe userId se where userId is coming from clerk auth
         await prismadb.userApiLimit.create({
             data: {
                 userId: userId,

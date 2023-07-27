@@ -31,11 +31,15 @@ import { Loader } from "@/components/loader";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
 
+import { useProModal } from "@/hooks/use-pro-model";
+
 
 
 const ImagePage = () => {
 
     const router = useRouter();
+
+    const openProModal = useProModal();
 
     const [images , setImages] = useState<string[]>([]); 
 
@@ -69,7 +73,10 @@ const ImagePage = () => {
             
         } catch (error:any) {
             //todo : open pro model     //1:54
-            console.log(error);
+            if(error?.response?.status === 403) {
+                openProModal.onOpen();
+            }
+            // console.log(error);
         } finally {
             router.refresh();     //all of our server components are gonna update
         }

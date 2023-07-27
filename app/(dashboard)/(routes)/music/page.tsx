@@ -22,6 +22,7 @@ import {Empty} from "@/components/empty";
 import { Loader } from "@/components/loader";
 
 
+import { useProModal } from "@/hooks/use-pro-model";
 
 
 // import { MessageSquare } from "lucide-react";
@@ -30,6 +31,8 @@ import { Music } from "lucide-react";
 const MusicPage = () => {
 
     const router = useRouter();
+
+    const openProModal = useProModal();
 
     const [music , setMusic] = useState<string>(); 
 
@@ -57,7 +60,10 @@ const MusicPage = () => {
             
         } catch (error:any) {
             //todo : open pro model     //1:54
-            console.log(error);
+            if(error?.response?.status === 403) {
+                openProModal.onOpen();
+            }
+            // console.log(error);
         } finally {
             router.refresh();     //all of our server components are gonna update
         }
