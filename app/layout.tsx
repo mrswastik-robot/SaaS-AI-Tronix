@@ -8,6 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 import { ModalProvider } from '@/components/modal-provider'
 import { ToasterProvider } from '@/components/toaster-provider'
+import { CrispProvider } from '@/components/crisp-provider'
 
 export const metadata: Metadata = {
   title: 'AI Tronix.',
@@ -24,6 +25,7 @@ export default function RootLayout({
     <ClerkProvider>
 
         <html lang="en">
+          <CrispProvider/>
               <body className={inter.className}>
                 <ModalProvider />
                 <ToasterProvider />
