@@ -3,6 +3,8 @@
 
 import axios from "axios";
 
+import { toast } from "react-hot-toast";
+
 import * as z from "zod";
 import { amountOptions, resolutionOptions, formSchema} from "./constants"
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -75,6 +77,8 @@ const ImagePage = () => {
             //todo : open pro model     //1:54
             if(error?.response?.status === 403) {
                 openProModal.onOpen();
+            }else{
+                toast.error("Something went wrong. Please try again later.");
             }
             // console.log(error);
         } finally {
