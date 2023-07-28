@@ -110,7 +110,7 @@ const ImagePage = () => {
                                 <Input
                                 className=" border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                                 disabled={isLoading}
-                                placeholder="Gandhi Jii riding on a horse"
+                                placeholder="Gandhi Jii riding a horse..."
                                 autoComplete="off"
                                 {...field}    // this {...field} is the substitute for manually writing the onChange, onBlur, value, name, ref, etc.    //1:39:00
                                 />
