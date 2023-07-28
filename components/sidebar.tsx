@@ -78,7 +78,7 @@ const Sidebar = ({apiLimitCount = 0}: SidebarProps) => {
                 </div>
 
                 <h1 className={ cn("text-2xl font-bold", montserrat.className)}>
-                    AI-Tronix
+                    AI-TroniX
                 </h1>
 
             </Link>
