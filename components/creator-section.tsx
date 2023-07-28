@@ -16,15 +16,15 @@ export const CreatorSection = () => {
 
             <div className='flex justify-center items-center gap-x-8'>
 
-                <Link href="https://www.instagram.com/mrswastik.robot/">
+                <Link href="https://www.instagram.com/t.e_.n._e.t/" target='_blank'>
                     <InstagramIcon className=' h-8 w-8 text-purple-400/60'/>
                 </Link>
 
-                <Link href="https://github.com/mrswastik-robot">
+                <Link href="https://github.com/mrswastik-robot" target='_blank'>
                     <Github className=' h-8 w-8 text-purple-400/60'/>
                 </Link>
 
-                <Link href="https://www.linkedin.com/in/swastik-singh-robotics/">
+                <Link href="https://www.linkedin.com/in/swastik-patel-9b1254232/" target='_blank'>
                     <Linkedin className=' h-8 w-8 text-purple-400/60'/>
                 </Link>
             </div>
