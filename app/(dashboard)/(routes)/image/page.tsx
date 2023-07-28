@@ -78,9 +78,9 @@ const ImagePage = () => {
             if(error?.response?.status === 403) {
                 openProModal.onOpen();
             }else{
-                toast.error("Something went wrong. Please try again later.");
+                toast.error("API is being used heavily right now. Please try again later.");
             }
-            // console.log(error);
+            console.log(error);
         } finally {
             router.refresh();     //all of our server components are gonna update
         }

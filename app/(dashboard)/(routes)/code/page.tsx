@@ -74,7 +74,7 @@ const CodePage = () => {
             if(error?.response?.status === 403) {
                 openProModal.onOpen();
             }else{
-                toast.error("Something went wrong. Please try again later.");
+                toast.error("API is being used heavily right now. Please try again later.");
             }
             // console.log(error);
         } finally {
